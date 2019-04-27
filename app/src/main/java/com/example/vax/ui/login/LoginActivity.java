@@ -29,6 +29,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+
+import android.os.AsyncTask;
+import java.net.URL;
+import javax.net.ssl.HttpsURLConnection;
+
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
@@ -39,6 +44,34 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
+
+
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                Button button = (Button)findViewById(R.id.button2);
+                button.setText("Click Me !");
+                // Create URL
+                URL githubEndpoint = null;
+                try {
+                     githubEndpoint = new URL("https://api.github.com/");
+                } catch (Exception e) {
+
+                }
+// Create connection
+                try {
+                    HttpsURLConnection myConnection = (HttpsURLConnection) githubEndpoint.openConnection();
+                    if (myConnection.getResponseCode() == 200) {
+                        // Success
+                        // Further processing here
+                    } else {
+                        // Error handling code goes here
+                    }
+                } catch (Exception e) {
+
+                }
+            }
+        });
 
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
@@ -75,6 +108,14 @@ public class LoginActivity extends AppCompatActivity {
                     updateUiWithUser(loginResult.getSuccess());
                 }
                 setResult(Activity.RESULT_OK);
+
+
+
+
+
+
+
+
 
                 //Complete and destroy login activity once successful
                 finish();
