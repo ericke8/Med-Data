@@ -47,30 +47,7 @@ public class LoginActivity extends AppCompatActivity {
                 .get(LoginViewModel.class);
 
 
-        AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
-                // Create URL
-                URL githubEndpoint = null;
-                try {
-                     githubEndpoint = new URL("https://api.github.com/");
-                } catch (Exception e) {
 
-                }
-// Create connection
-                try {
-                    HttpsURLConnection myConnection = (HttpsURLConnection) githubEndpoint.openConnection();
-                    if (myConnection.getResponseCode() == 200) {
-                        // Success
-                        // Further processing here
-                    } else {
-                        // Error handling code goes here
-                    }
-                } catch (Exception e) {
-
-                }
-            }
-        });
 
         final EditText usernameEditText = findViewById(R.id.username);
         final EditText passwordEditText = findViewById(R.id.password);
