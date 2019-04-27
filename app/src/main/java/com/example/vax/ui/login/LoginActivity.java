@@ -19,16 +19,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vax.R;
-import com.example.vax.data.ScrollingActivity;
-import com.example.vax.ui.login.LoginViewModel;
-import com.example.vax.ui.login.LoginViewModelFactory;
+import com.example.vax.data.MainActivity;
 
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
+
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
@@ -125,15 +120,15 @@ public class LoginActivity extends AppCompatActivity {
     private void updateUiWithUser(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
         // TODO : initiate successful logged in experience
-        Intent intent = new Intent(this, ScrollingActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         EditText editText = (EditText) findViewById(R.id.username);
         String message = editText.getText().toString();
-        //intent.putExtra(EXTRA_MESSAGE, message);
+        intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     }
 
-    //public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
+    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
