@@ -1,6 +1,7 @@
 package com.example.vax.data;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,10 @@ import com.example.vax.R;
 
 
 import com.example.vax.ui.login.LoginActivity;
+
+import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class MainActivity extends AppCompatActivity {
     private TextView mTextMessage;
@@ -54,6 +59,31 @@ public class MainActivity extends AppCompatActivity {
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.textView2);
         textView.setText(message);
+
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                // Create URL
+                URL githubEndpoint = null;
+                try {
+                    githubEndpoint = new URL("https://api.github.com/");
+                } catch (Exception e) {
+
+                }
+// Create connection
+                try {
+                    HttpsURLConnection myConnection = (HttpsURLConnection) githubEndpoint.openConnection();
+                    if (myConnection.getResponseCode() == 200) {
+                        // Success
+                        // Further processing here
+                    } else {
+                        // Error handling code goes here
+                    }
+                } catch (Exception e) {
+
+                }
+            }
+        });
     }
 
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
