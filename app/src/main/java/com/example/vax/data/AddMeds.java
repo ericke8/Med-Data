@@ -12,6 +12,7 @@ public class AddMeds extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_add_meds);
 
         final EditText addMedText = findViewById(R.id.addMedsText);
