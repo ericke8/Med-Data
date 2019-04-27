@@ -1,17 +1,14 @@
 package com.example.vax.data;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
 import android.text.method.ScrollingMovementMethod;
 import android.util.JsonReader;
 import android.view.MenuItem;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.view.View;
 import com.example.vax.R;
@@ -19,7 +16,6 @@ import com.example.vax.R;
 
 import com.example.vax.ui.login.LoginActivity;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -71,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         String message = intent.getStringExtra(LoginActivity.EXTRA_MESSAGE);
 
         // Capture the layout's TextView and set the string as its text
-        TextView textView = findViewById(R.id.textView2);
+        TextView textView = findViewById(R.id.alertText);
         textView.setText(message);
 
         AsyncTask.execute(new Runnable() {
@@ -115,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void scrollSwitch(View view){
         Intent intent = new Intent(this, ScrollingActivity.class);
-        TextView text = (TextView) findViewById(R.id.textView2);
+        TextView text = (TextView) findViewById(R.id.alertText);
         String message = text.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
