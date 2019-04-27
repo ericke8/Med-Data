@@ -13,9 +13,11 @@ import com.example.vax.R;
 
 
 import com.example.vax.ui.login.LoginActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
     private TextView mTextMessage;
+    FirebaseAuth mAuth;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.textView2);
         textView.setText(message);
+        mAuth = FirebaseAuth.getInstance();
     }
 
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
