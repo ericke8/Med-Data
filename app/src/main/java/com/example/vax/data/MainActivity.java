@@ -1,3 +1,4 @@
+
 package com.example.vax.data;
 
 import android.content.Intent;
@@ -56,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mTextMessage = findViewById(R.id.message);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
+
+
 
         myMeds = new ArrayList<String>();
         myMeds.add("Betamethasone NA Phosphate");
@@ -137,9 +141,9 @@ public class MainActivity extends AppCompatActivity {
                     jsonReader.beginArray();
                     while (jsonReader.hasNext()) {
 
-                       String result = getDrugName(jsonReader);
-                       System.out.println(result);
-                       badMeds.add(result);
+                        String result = getDrugName(jsonReader);
+                        System.out.println(result);
+                        badMeds.add(result);
                     }
                     jsonReader.endArray();
                 } else {
@@ -185,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public String getFoodInfo() {
-        String result = "Current Food Recalls:\n";
+        String result = " ";
         URL foodURL;
         try {
             foodURL = new URL("https://api.fda.gov/food/enforcement.json?search=report_date:[20190101+TO+20190428]&limit=5");
