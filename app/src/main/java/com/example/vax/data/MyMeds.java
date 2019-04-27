@@ -15,6 +15,7 @@ import com.example.vax.R;
 
 public class MyMeds extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

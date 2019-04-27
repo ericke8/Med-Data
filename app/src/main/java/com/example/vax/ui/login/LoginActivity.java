@@ -28,6 +28,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.example.vax.data.ScrollingActivity;
 import com.example.vax.ui.login.LoginViewModel;
 import com.example.vax.ui.login.LoginViewModelFactory;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 import android.content.Intent;
@@ -56,6 +57,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
+        // Access a Cloud Firestore instance from your Activity
+        //FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
