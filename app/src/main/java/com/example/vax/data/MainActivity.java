@@ -66,4 +66,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void myMedsSwitch(View view){
+        Intent intent = new Intent(this, MyMeds.class);
+        //TextView text = (TextView) findViewById(R.id.textView2);
+        //String message = text.getText().toString();
+        //intent.putExtra(EXTRA_MESSAGE, message);
+        startActivity(intent);
+    }
+
 }
