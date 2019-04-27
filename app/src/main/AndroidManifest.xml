@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MedDetail"></activity>
+        <activity android:name=".data.MedDetail"></activity>
         <activity
             android:name=".data.MyMeds"
             android:label="@string/title_activity_my_meds"
