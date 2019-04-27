@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.view.View;
 import com.example.vax.R;
+import android.text.method.ScrollingMovementMethod;
+import android.widget.TextView;
 
 
 import com.example.vax.ui.login.LoginActivity;
@@ -59,9 +61,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+        TextView textVieww = (TextView) findViewById(R.id.news);
+
+
+        textVieww.setMovementMethod(new ScrollingMovementMethod());
         mTextMessage = findViewById(R.id.message);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
+
 
 
 
@@ -242,6 +251,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return result;
     }
+
 
     public String getFoodName(JsonReader jsonReader) {
         try {

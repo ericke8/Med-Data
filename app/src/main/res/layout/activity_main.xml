@@ -71,6 +71,8 @@
             <TextView
                 android:id="@+id/foodRecallText"
                 android:layout_width="fill_parent"
+
+
                 android:layout_height="wrap_content"
                 android:text="@string/foodRecallTitle"
                 android:textSize="20dp"
@@ -78,24 +80,22 @@
                 app:fontFamily="@font/quicksand" />
 
 
-            <ScrollView
-                android:id="@+id/SCROLLER_ID"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:scrollbars="vertical"
-                android:fillViewport="true">
+
+
 
             <TextView
                 android:id="@+id/news"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:padding="10dp"
-                android:scrollbars="vertical"
                 android:text="@string/news"
                 android:textSize="16dp"
+                android:scrollbars="vertical"
+
                 app:fontFamily="@font/quicksand" />
 
-            </ScrollView>
+
+
 
 
 
@@ -119,13 +119,19 @@
 
         <Button
             android:id="@+id/editButton"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_width="230dp"
+            android:layout_height="50dp"
+            android:layout_margin="20dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:background="@drawable/button_round"
+            android:textColor="@color/white"
+            android:background="@drawable/button_edit_med"
             android:onClick="myMedsSwitch"
             android:text="@string/editList"
+            android:paddingRight="15dp"
+
+
+            android:drawableRight="@android:drawable/ic_menu_edit"
             app:layout_constraintTop_toTopOf="parent" />
 
 
