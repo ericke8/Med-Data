@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private List<String> myMeds;
     private List<String> badMeds;
 
+    private String currentUserID;
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -68,11 +70,11 @@ public class MainActivity extends AppCompatActivity {
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        String message = intent.getStringExtra(LoginActivity.EXTRA_MESSAGE);
+        currentUserID = intent.getStringExtra(LoginActivity.EXTRA_MESSAGE);
 
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.alertText);
-        textView.setText(message);
+        textView.setText("recall alert placeholder");
 
         AsyncTask.execute(new Runnable() {
             @Override
