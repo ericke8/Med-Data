@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 // Create URL
                 URL drugURL = null;
                 try {
-                    drugURL = new URL("https://api.fda.gov/drug/enforcement.json?search=report_date:[20190101+TO+20191231]&limit=100");
+                    drugURL = new URL("https://api.fda.gov/drug/enforcement.json?search=report_date:[19700101+TO+20191231]&limit=100");
                 } catch (Exception e) {
 
                 }
@@ -172,18 +172,23 @@ public class MainActivity extends AppCompatActivity {
     public String getDrugName(JsonReader jsonReader) {
         try {
             String keyName = "product_description";
+            String dateName = "recall_initiation_date";
             String ans = null;
+            String date = null;
             jsonReader.beginObject();
             while (jsonReader.hasNext()) {
                 String name = jsonReader.nextName();
                 if (name.equals(keyName)) {
                     ans = jsonReader.nextString();
-                } else {
+                } else if (name.equals(dateName)) {
+                    date = jsonReader.nextString();
+                }
+                else {
                     jsonReader.skipValue();
                 }
             }
             jsonReader.endObject();
-            return ans;
+            return date + ": " + ans;
         } catch (Exception e) {
             return "HEROIN";
         }
@@ -194,7 +199,10 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < badMeds.size(); i++) {
             for (int j = 0; j < myMeds.size(); j++) {
                 if (badMeds.get(i).contains(myMeds.get(j))) {
-                    ans += myMeds.get(j);
+                    String date = badMeds.get(i).split(": ")[0];
+                    date = date.substring(4, 6) + "/" + date.substring(6) + "/" + date.substring(0, 4);
+                    ans += date + ": " + myMeds.get(j);
+                    ans += "\n";
                     ans += "\n";
                 }
             }
@@ -208,9 +216,6 @@ public class MainActivity extends AppCompatActivity {
         try {
             long millisecondsInWeek = 604800000;
             String dateRange[] = getTimeRange(millisecondsInWeek * 2);
-            System.out.println("READE THIS SDLKFJSDLFJLKSDFJ:LSDF");
-            System.out.println(dateRange[0]);
-            System.out.println(dateRange[1]);
             foodURL = new URL("https://api.fda.gov/food/enforcement.json?search=report_date:[" + dateRange[0].trim() + "+TO+" + dateRange[1].trim() + "]&limit=5");
             HttpsURLConnection myConnection = (HttpsURLConnection) foodURL.openConnection();
             if (myConnection.getResponseCode() == 200) {
