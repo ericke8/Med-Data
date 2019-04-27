@@ -67,6 +67,24 @@
             tools:layout_editor_absoluteX="20dp"
             tools:layout_editor_absoluteY="60dp">
 
+
+            <TextView
+                android:id="@+id/foodRecallText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/foodRecallTitle"
+                android:textSize="16dp"
+                android:textAlignment="center"
+                app:fontFamily="@font/quicksand" />
+
+
+            <ScrollView
+                android:id="@+id/SCROLLER_ID"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                android:fillViewport="true">
+
             <TextView
                 android:id="@+id/news"
                 android:layout_width="match_parent"
@@ -77,17 +95,9 @@
                 android:textSize="16dp"
                 app:fontFamily="@font/quicksand" />
 
-            <!--THE SCROLL BUTTON PRESERVED FOR PROSPERITY
-            <Button
-                android:id="@+id/button"
-                android:layout_width="170dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/button_round"
-                android:onClick="scrollSwitch"
-                android:text="Go to scroll"/>
-                !-->
+            </ScrollView>
+
+
 
         </LinearLayout>
 
@@ -122,3 +132,4 @@
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
+

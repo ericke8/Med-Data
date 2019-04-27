@@ -113,6 +113,9 @@
 
     <string name="alerts">Alerts</string>
     <string name="editList"> Edit Your Meds List </string>
+    <string name="foodRecallTitle">Current Food Recalls </string>
+
+
 
     <string name="news">News</string>
 
