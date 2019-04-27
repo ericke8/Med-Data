@@ -1,6 +1,7 @@
 package com.example.vax.data;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getWindow().getDecorView().setBackgroundColor(Color.DKGRAY);
         mTextMessage = findViewById(R.id.message);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
