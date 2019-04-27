@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 // Create URL
                 URL drugURL = null;
                 try {
-                    drugURL = new URL("https://api.fda.gov/drug/enforcement.json?search=report_date:[20040101+TO+20131231]&limit=100");
+                    drugURL = new URL("https://api.fda.gov/drug/enforcement.json?search=report_date:[20190101+TO+20191231]&limit=100");
                 } catch (Exception e) {
 
                 }
@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public String getFoodInfo() {
-        String result = "";
+        String result = "Current Food Recalls:\n";
         URL foodURL;
         try {
             foodURL = new URL("https://api.fda.gov/food/enforcement.json?search=report_date:[20190101+TO+20190428]&limit=5");
@@ -204,8 +204,8 @@ public class MainActivity extends AppCompatActivity {
                         if (key.equals("results")) {
                             jsonReader.beginArray();
                             while (jsonReader.hasNext()) {
-                                result += getDrugName(jsonReader);
-                                result += "\n";
+                                result += getFoodName(jsonReader);
+                                result += "\n\n";
                             }
                             jsonReader.endArray();
                         } else {
@@ -222,6 +222,34 @@ public class MainActivity extends AppCompatActivity {
             return "Error Connecting to Database...";
         }
         return result;
+    }
+
+    public String getFoodName(JsonReader jsonReader) {
+        try {
+            String keyName = "product_description";
+            String keyDate = "report_date";
+            String ans = null;
+            String tempName = "";
+            String tempDate = "";
+            jsonReader.beginObject();
+            while (jsonReader.hasNext()) {
+                String name = jsonReader.nextName();
+                if (name.equals(keyName)) {
+                    tempName = jsonReader.nextString();
+                } else if (name.equals(keyDate)) {
+                    tempDate = jsonReader.nextString();
+                } else {
+                    jsonReader.skipValue();
+                }
+            }
+
+            jsonReader.endObject();
+            tempDate = tempDate.substring(4,6) + "/" + tempDate.substring(6) + "/" + tempDate.substring(0, 4);
+            ans = tempDate + ": " + tempName;
+            return ans;
+        } catch (Exception e) {
+            return "HEROIN";
+        }
     }
 
 }
