@@ -74,15 +74,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 // Create URL
-                URL githubEndpoint = null;
+                URL drugURL = null;
                 try {
-                    githubEndpoint = new URL("https://api.fda.gov/drug/enforcement.json?search=report_date:[20040101+TO+20131231]&limit=100");
+                    drugURL = new URL("https://api.fda.gov/drug/enforcement.json?search=report_date:[20040101+TO+20131231]&limit=100");
                 } catch (Exception e) {
 
                 }
 // Create connection
                 try {
-                    HttpsURLConnection myConnection = (HttpsURLConnection) githubEndpoint.openConnection();
+                    HttpsURLConnection myConnection = (HttpsURLConnection) drugURL.openConnection();
                     if (myConnection.getResponseCode() == 200) {
                         // Success
                         // Further processing here
@@ -92,17 +92,20 @@ public class MainActivity extends AppCompatActivity {
 
                         // Do something with the value
                         getDrugs(jsonReader);
-                        TextView textView = findViewById(R.id.json);
-                        textView.setMovementMethod(new ScrollingMovementMethod());
-                        textView.setText(compareMedLists(myMeds, badMeds));
+                        TextView medAlerts = findViewById(R.id.alertText);
+                        medAlerts.setMovementMethod(new ScrollingMovementMethod());
+                        medAlerts.setText(compareMedLists(myMeds, badMeds));
 
                     } else {
-                        TextView textView = findViewById(R.id.json);
-                        textView.setText("Error Connecting to Database...");
+                        TextView medAlerts = findViewById(R.id.alertText);
+                        medAlerts.setText("Error Connecting to Database...");
                     }
                 } catch (Exception e) {
 
                 }
+
+                TextView foodInfo = findViewById(R.id.news);
+                foodInfo.setText(getFoodInfo());
             }
         });
     }
@@ -179,6 +182,46 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return ans;
+    }
+
+    public String getFoodInfo() {
+        String result = "";
+        URL foodURL;
+        try {
+            foodURL = new URL("https://api.fda.gov/food/enforcement.json?search=report_date:[20190101+TO+20190428]&limit=5");
+            HttpsURLConnection myConnection = (HttpsURLConnection) foodURL.openConnection();
+            if (myConnection.getResponseCode() == 200) {
+                // Success
+                // Further processing here
+                InputStream responseBody = myConnection.getInputStream();
+                InputStreamReader responseBodyReader = new InputStreamReader(responseBody, "UTF-8");
+                JsonReader jsonReader = new JsonReader(responseBodyReader);
+
+                try {
+                    jsonReader.beginObject(); // Start processing the JSON object
+                    while (jsonReader.hasNext()) {
+                        String key = jsonReader.nextName();
+                        if (key.equals("results")) {
+                            jsonReader.beginArray();
+                            while (jsonReader.hasNext()) {
+                                result += getDrugName(jsonReader);
+                                result += "\n";
+                            }
+                            jsonReader.endArray();
+                        } else {
+                            jsonReader.skipValue();
+                        }
+                    }
+                    jsonReader.close();
+                } catch (Exception e) {
+                }
+            } else {
+                return "Error Connecting to Database...";
+            }
+        } catch (Exception e) {
+            return "Error Connecting to Database...";
+        }
+        return result;
     }
 
 }
