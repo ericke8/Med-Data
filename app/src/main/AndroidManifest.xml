@@ -21,6 +21,7 @@
         <activity
             android:name=".data.MainActivity"
             android:label="@string/title_activity_main"
+
             android:parentActivityName=".ui.login.LoginActivity" />
         <activity
             android:name=".data.ScrollingActivity"
