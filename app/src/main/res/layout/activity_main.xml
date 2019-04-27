@@ -21,13 +21,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-
-            android:layout_height="100dp"
-            android:background="#03A9F4"
-            android:orientation="vertical"
+            android:layout_height="140dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
+            android:background="@drawable/gradient"
+            android:orientation="vertical"
             android:padding="10dp"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="20dp"
@@ -38,11 +37,10 @@
                 android:id="@+id/AlertTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:inputType="textPersonName"
                 android:text="Medical Recall Alerts"
                 android:textColor="@color/white"
-                android:textSize="18dp"
-                android:inputType="textPersonName"
-               />
+                android:textSize="18dp" />
 
             <TextView
                 android:id="@+id/alertText"
@@ -54,39 +52,48 @@
                 app:fontFamily="@font/quicksand" />
 
 
+        </LinearLayout>
 
 
+        <LinearLayout
+            android:id="@+id/newsDiv"
+            android:layout_width="match_parent"
+            android:layout_height="286dp"
+            android:layout_margin="20dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="60dp">
+
+            <TextView
+                android:id="@+id/json"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:scrollbars="vertical"
+                android:text="@string/news"
+                android:textSize="16dp"
+                app:fontFamily="@font/quicksand" />
+
+            <!--THE SCROLL BUTTON PRESERVED FOR PROSPERITY
+            <Button
+                android:id="@+id/button"
+                android:layout_width="170dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_round"
+                android:onClick="scrollSwitch"
+                android:text="Go to scroll"/>
+                !-->
 
         </LinearLayout>
 
 
 
-        <TextView
-            android:id="@+id/json"
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:layout_margin="20dp"
-            android:background="@color/white"
-            android:padding="10dp"
-            android:scrollbars="vertical"
-            android:text="@string/news"
-            android:textSize="16dp"
-            app:fontFamily="@font/quicksand"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/alertText" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="170dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/button_round"
-            android:onClick="scrollSwitch"
-            android:text="Go to scroll"
-            app:layout_constraintTop_toTopOf="parent" />
 
 
     </LinearLayout>
@@ -101,14 +108,14 @@
         app:layout_constraintTop_toBottomOf="@id/topDiv">
 
         <Button
-            android:id="@+id/button3"
-            android:layout_width="170dp"
+            android:id="@+id/editButton"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:background="@drawable/button_round"
             android:onClick="myMedsSwitch"
-            android:text="Go to meds"
+            android:text="@string/editList"
             app:layout_constraintTop_toTopOf="parent" />
 
 
