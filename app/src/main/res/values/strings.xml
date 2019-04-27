@@ -108,7 +108,12 @@
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_my_meds">MyMeds</string>
 
+
+
+
     <string name="alerts">Alerts</string>
+    <string name="editList"> Edit Your Meds List </string>
+
     <string name="news">News</string>
 
 
