@@ -24,6 +24,8 @@ import com.example.vax.R;
 import com.example.vax.data.MainActivity;
 import com.example.vax.data.MyMeds;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,6 +42,9 @@ import android.view.View;
 import android.widget.EditText;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import 	javax.net.ssl.HttpsURLConnection;
 import android.os.AsyncTask;
 
@@ -48,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
     private LoginViewModel loginViewModel;
 
     FirebaseAuth mAuth;
+    FirebaseFirestore db;
 
 
     @Override
@@ -57,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         // Access a Cloud Firestore instance from your Activity
-        //FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
@@ -172,6 +178,21 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Registered successfully",
                                     Toast.LENGTH_LONG).show();
                             String userStr = mAuth.getCurrentUser().getUid();
+
+                            //HashMap<String, String> testing = new HashMap<>();
+                            //testing.put("testkey", "testvalue");
+                            db.collection("users").document(userStr).set(new HashMap<String,String>()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d("loginActivity","Success write to db");
+                                }
+                            })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w("loginActivity", "Error writing document", e);
+                                        }
+                                    });;
                             updateUiWithUser(userStr);
                             finish();
 
