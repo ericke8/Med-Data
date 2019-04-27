@@ -48,7 +48,7 @@
 
     <Button
         android:id="@+id/login"
-        android:layout_width="300dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:textColor="#1E89DD"
         android:layout_gravity="start"
@@ -68,18 +68,17 @@
 
     <Button
         android:id="@+id/signUp"
-        android:layout_width="300dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:textColor="#1E89DD"
+        android:textColor="@color/white"
         android:layout_gravity="start"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="5dp"
         android:layout_marginEnd="48dp"
         android:enabled="false"
         android:text="@string/action_register"
         android:paddingLeft= "10dp"
         android:paddingRight = "10dp"
-        android:background="@drawable/button_round"
+        android:background="@drawable/button_outline"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
