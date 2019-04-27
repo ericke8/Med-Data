@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.vax.R;
 import com.example.vax.data.MainActivity;
+import com.example.vax.data.MyMeds;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -44,10 +45,7 @@ import android.os.AsyncTask;
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
-    EditText username;
-    EditText password;
-    Button register;
-    Button login;
+
     FirebaseAuth mAuth;
 
 
@@ -140,9 +138,20 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //startActivity(new Intent(LoginActivity.this, MyMeds.class));
+                mAuth.signInWithEmailAndPassword(usernameEditText.getText().toString(),
+                        passwordEditText.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                        } else {
+                            Toast.makeText(LoginActivity.this, task.getException().getMessage(),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
                 loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
             }
         });
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -155,8 +164,9 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(LoginActivity.this, "Registered successfully",
                                     Toast.LENGTH_LONG).show();
-                            loginViewModel.login(usernameEditText.getText().toString(),
-                                    passwordEditText.getText().toString());
+                            startActivity(new Intent(LoginActivity.this, MyMeds.class));
+                            //loginViewModel.login(usernameEditText.getText().toString(),
+                            //        passwordEditText.getText().toString());
                         } else {
                             Toast.makeText(LoginActivity.this, task.getException().getMessage(),
                                     Toast.LENGTH_LONG).show();
