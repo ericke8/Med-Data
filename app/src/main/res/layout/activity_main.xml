@@ -5,91 +5,87 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue"
+    android:background="#F3F3FC"
     tools:context=".data.MainActivity">
 
 
-
-
-
-
     <LinearLayout
-        android:layout_height="418dp"
-        android:orientation="vertical"
         android:id="@+id/topDiv"
         android:layout_width="match_parent"
+        android:layout_height="488dp"
+        android:background="#E6F0F0"
+        android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/cardview_dark_background"
-        tools:layout_editor_absoluteX="10dp"
-        tools:layout_editor_absoluteY="10dp">
+        tools:layout_editor_absoluteX="10dp">
 
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/alertText"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="120dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
-            android:background="@color/colorPrimary"
+            android:background="#03A9F4"
+            android:padding="10dp"
             android:text="@string/alerts"
-            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:fontFamily="@font/quicksand"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="20dp"
             tools:layout_editor_absoluteY="60dp" />
 
+
         <TextView
             android:id="@+id/json"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="220dp"
             android:layout_margin="20dp"
             android:background="@color/white"
+            android:padding="10dp"
             android:scrollbars="vertical"
             android:text="@string/news"
+            android:textSize="16dp"
+            app:fontFamily="@font/quicksand"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/alertText" />
 
+        <Button
+            android:id="@+id/button"
+            android:layout_width="170dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_round"
+            android:onClick="scrollSwitch"
+            android:text="Go to scroll"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </LinearLayout>
 
+
     <LinearLayout
-        android:layout_height="110dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/topDiv"
+
         android:layout_width="match_parent"
-        android:background="@color/deep_purple_500"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="426dp">
-
-
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="540dp"
-            android:onClick="scrollSwitch"
-            android:text="Go to scroll"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.525"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="200dp"
+        android:background="#D7F5F1"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/topDiv">
 
         <Button
             android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="464dp"
+            android:layout_width="170dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_round"
             android:onClick="myMedsSwitch"
-            android:text="Go to mymeds"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.54"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="Go to meds"
             app:layout_constraintTop_toTopOf="parent" />
-
 
 
     </LinearLayout>
