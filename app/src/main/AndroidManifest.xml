@@ -4,7 +4,9 @@
     package="com.example.vax">
 
     <dist:module dist:instant="true" />
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,7 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".data.MedDetail"></activity>
+        <activity android:name=".data.AddMeds"
+            android:parentActivityName=".data.MyMeds" />
+
+        <activity android:name=".data.MedDetail" />
         <activity
             android:name=".data.MyMeds"
             android:label="@string/title_activity_my_meds"
@@ -21,7 +26,6 @@
         <activity
             android:name=".data.MainActivity"
             android:label="@string/title_activity_main"
-
             android:parentActivityName=".ui.login.LoginActivity" />
         <activity
             android:name=".data.ScrollingActivity"
