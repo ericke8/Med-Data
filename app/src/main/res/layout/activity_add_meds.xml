@@ -4,14 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1A2B63"
     tools:context=".data.AddMeds">
 
     <Button
         android:id="@+id/addMedsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:layout_marginTop="154dp"
-        android:text="Button"
+
+        android:background="@drawable/button_round"
+        android:text="@string/submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
@@ -30,6 +34,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Medicine Name"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:textColor="#FFFFFF"
+            android:textSize="40dp"
+            android:textColorHighlight="@color/deep_purple_500"
+            android:textColorHint="#EBE7E7"
+            android:textColorLink="#FFFFFF" />
     </android.support.design.widget.TextInputLayout>
 </android.support.constraint.ConstraintLayout>

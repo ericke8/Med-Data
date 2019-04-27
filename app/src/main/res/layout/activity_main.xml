@@ -111,9 +111,10 @@
 
     <LinearLayout
 
+        android:id="@+id/bottomDiv"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="#D7F5F1"
+        android:background="#D6E0E0"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/topDiv">
 
@@ -121,17 +122,17 @@
             android:id="@+id/editButton"
             android:layout_width="230dp"
             android:layout_height="50dp"
-            android:layout_margin="20dp"
             android:layout_gravity="center"
+            android:layout_margin="20dp"
             android:layout_marginTop="10dp"
-            android:textColor="@color/white"
             android:background="@drawable/button_edit_med"
-            android:onClick="myMedsSwitch"
-            android:text="@string/editList"
-            android:paddingRight="15dp"
-
-
             android:drawableRight="@android:drawable/ic_menu_edit"
+            android:onClick="myMedsSwitch"
+            android:paddingRight="15dp"
+            android:text="@string/editList"
+
+
+            android:textColor="@color/white"
             app:layout_constraintTop_toTopOf="parent" />
 
 
