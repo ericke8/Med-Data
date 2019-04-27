@@ -22,12 +22,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
 public class MainActivity extends AppCompatActivity {
     private TextView mTextMessage;
+
+    private List<String> myMeds;
+    private List<String> badMeds;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -58,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
+        myMeds = new ArrayList<String>();
+        myMeds.add("Betamethasone NA Phosphate");
+        myMeds.add("THIS IS NOT A BAD MED");
+        badMeds = new ArrayList<String>();
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
@@ -88,10 +96,10 @@ public class MainActivity extends AppCompatActivity {
                         JsonReader jsonReader = new JsonReader(responseBodyReader);
 
                         // Do something with the value
-
+                        getDrugs(jsonReader);
                         TextView textView = findViewById(R.id.json);
                         textView.setMovementMethod(new ScrollingMovementMethod());
-                        textView.setText(getDrugs(jsonReader));
+                        textView.setText(compareMedLists(myMeds, badMeds));
 
                     } else {
                         TextView textView = findViewById(R.id.json);
@@ -114,8 +122,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public String getDrugs(JsonReader jsonReader){
-        String ans = "";
+    public void getDrugs(JsonReader jsonReader){
         try {
             jsonReader.beginObject(); // Start processing the JSON object
             while (jsonReader.hasNext()) {
@@ -123,8 +130,10 @@ public class MainActivity extends AppCompatActivity {
                 if (key.equals("results")) {
                     jsonReader.beginArray();
                     while (jsonReader.hasNext()) {
-                        ans += getDrugName(jsonReader);
-                        ans += "\n";
+
+                       String result = getDrugName(jsonReader);
+                       System.out.println(result);
+                       badMeds.add(result);
                     }
                     jsonReader.endArray();
                 } else {
@@ -132,9 +141,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             jsonReader.close();
-            return ans;
         } catch (Exception e) {
-            return "DRUGS";
         }
     }
 
@@ -156,6 +163,19 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             return "HEROIN";
         }
+    }
+
+    public String compareMedLists(List<String> myMeds, List<String> badMeds) {
+        String ans = "";
+        for (int i = 0; i < badMeds.size(); i++) {
+            for (int j = 0; j < myMeds.size(); j++) {
+                if (badMeds.get(i).contains(myMeds.get(j))) {
+                    ans += myMeds.get(j);
+                    ans += "\n";
+                }
+            }
+        }
+        return ans;
     }
 
 }
