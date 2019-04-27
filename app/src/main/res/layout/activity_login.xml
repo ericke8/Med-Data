@@ -15,6 +15,7 @@
 
     <EditText
         android:id="@+id/username"
+
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -49,6 +50,7 @@
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#1E89DD"
         android:layout_gravity="start"
         android:layout_marginStart="48dp"
         android:layout_marginTop="16dp"
@@ -56,11 +58,22 @@
         android:layout_marginBottom="64dp"
         android:enabled="false"
         android:text="@string/action_sign_in"
+        android:paddingLeft= "10dp"
+        android:paddingRight = "10dp"
+
+
+
+
+        android:background="@drawable/button_round"
+
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
         app:layout_constraintVertical_bias="0.491" />
+
+    <!--app:backgroundTint="@color/white"!-->
 
     <ProgressBar
         android:id="@+id/loading"
@@ -79,15 +92,18 @@
         app:layout_constraintVertical_bias="0.3" />
 
     <TextView
-        android:id="@+id/textView"
-        android:textSize="40dp"
-
+        android:id="@+id/logoText"
         android:layout_width="match_parent"
+
+
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
         android:layout_marginTop="100dp"
+        android:gravity="center_horizontal"
         android:text="@string/app_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#FFFFFF"
+        android:textSize="60dp"
+        app:fontFamily="@font/quicksand"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="160dp" />
 
