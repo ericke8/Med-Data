@@ -23,6 +23,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.Date;
+import java.sql.Timestamp;
+
 import javax.net.ssl.HttpsURLConnection;
 
 public class MainActivity extends AppCompatActivity {
@@ -192,7 +195,12 @@ public class MainActivity extends AppCompatActivity {
         String result = " ";
         URL foodURL;
         try {
-            foodURL = new URL("https://api.fda.gov/food/enforcement.json?search=report_date:[20190101+TO+20190428]&limit=5");
+            long millisecondsInWeek = 604800000;
+            String dateRange[] = getTimeRange(millisecondsInWeek * 2);
+            System.out.println("READE THIS SDLKFJSDLFJLKSDFJ:LSDF");
+            System.out.println(dateRange[0]);
+            System.out.println(dateRange[1]);
+            foodURL = new URL("https://api.fda.gov/food/enforcement.json?search=report_date:[" + dateRange[0].trim() + "+TO+" + dateRange[1].trim() + "]&limit=5");
             HttpsURLConnection myConnection = (HttpsURLConnection) foodURL.openConnection();
             if (myConnection.getResponseCode() == 200) {
                 // Success
@@ -254,6 +262,29 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             return "HEROIN";
         }
+    }
+
+    public String[] getTimeRange(long range) {
+        String[] timeRange = new String[2];
+        Date date = new Date();
+        long timeNow = date.getTime();
+        long timeThen = timeNow - range;
+        Timestamp ts0 = new Timestamp(timeThen);
+        Timestamp ts1 = new Timestamp(timeNow);
+        timeRange[1] = ts1.toString();
+        timeRange[0] = ts0.toString();
+
+        // Parse Out Date
+        for (int i = 0; i < timeRange.length; i++) {
+            String result = "";
+            String dateStr = timeRange[i].split(" ")[0];
+            String[] dateParts = dateStr.split("-");
+            for (String datePart : dateParts) {
+                result += datePart;
+            }
+            timeRange[i] = result;
+        }
+        return timeRange;
     }
 
 }
