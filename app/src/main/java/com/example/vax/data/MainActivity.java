@@ -325,9 +325,11 @@ public class MainActivity extends AppCompatActivity {
             String keyName = "product_description";
             String dateName = "recall_initiation_date";
             String firmName = "recalling_firm";
+            String stateName = "state";
             String ans = null;
             String date = null;
             String firm = null;
+            String state = null;
             jsonReader.beginObject();
             while (jsonReader.hasNext()) {
                 String name = jsonReader.nextName();
@@ -337,13 +339,15 @@ public class MainActivity extends AppCompatActivity {
                     date = jsonReader.nextString();
                 } else if (name.equals(firmName)) {
                     firm = jsonReader.nextString();
+                } else if (name.equals(stateName)) {
+                    state = jsonReader.nextString();
                 }
                 else {
                     jsonReader.skipValue();
                 }
             }
             jsonReader.endObject();
-            return date + ": " + ans + "company:::" + firm;
+            return date + ": " + ans + "company:::" + firm + "company:::ORIGIN_STATE" + state;
         } catch (Exception e) {
             return "HEROIN";
         }
@@ -353,11 +357,12 @@ public class MainActivity extends AppCompatActivity {
         String ans = "";
         for (int i = 0; i < badMeds.size(); i++) {
             for (int j = 0; j < myMeds.size(); j++) {
-                if (badMeds.get(i).contains(myMeds.get(j))) {
+                if (badMeds.get(i).toLowerCase().contains(myMeds.get(j).toLowerCase())) {
                     String date = badMeds.get(i).split(": ")[0];
                     date = date.substring(4, 6) + "/" + date.substring(6) + "/" + date.substring(0, 4);
                     ans += date + ": " + myMeds.get(j);
                     ans += ", " + badMeds.get(i).split("company:::")[1];
+                    ans += ", " + badMeds.get(i).split("ORIGIN_STATE")[1];
                     ans += "\n";
                     ans += "\n";
                 }
