@@ -5,11 +5,14 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
 import android.text.method.ScrollingMovementMethod;
 import android.util.JsonReader;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.view.View;
 import com.example.vax.R;
@@ -18,6 +21,10 @@ import android.widget.TextView;
 
 
 import com.example.vax.ui.login.LoginActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -32,11 +39,14 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class MainActivity extends AppCompatActivity {
     private TextView mTextMessage;
-
     private List<String> myMeds;
     private List<String> badMeds;
-
     private String currentUserID;
+
+    private SwipeRefreshLayout refreshLayout;
+    private TextView text1;
+    private TextView text2;
+    private ArrayAdapter adapter;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -71,10 +81,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
 
-
-
-
-
         myMeds = new ArrayList<String>();
         myMeds.add("Betamethasone NA Phosphate");
         myMeds.add("THIS IS NOT A BAD MED");
@@ -87,6 +93,10 @@ public class MainActivity extends AppCompatActivity {
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.alertText);
         textView.setText("recall alert placeholder");
+
+        refreshLayout = findViewById(R.id.swipe_refresh_layout);
+        text1 = findViewById(R.id.DrugRecall);
+        text2 = findViewById(R.id.news);
 
         AsyncTask.execute(new Runnable() {
             @Override
@@ -124,6 +134,13 @@ public class MainActivity extends AppCompatActivity {
 
                 TextView foodInfo = findViewById(R.id.news);
                 foodInfo.setText(getFoodInfo());
+            }
+        });
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getFoodInfo();
+                refreshLayout.setRefreshing(false);
             }
         });
     }
