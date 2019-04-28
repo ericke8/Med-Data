@@ -20,6 +20,12 @@ public class AddMeds extends AppCompatActivity {
     FirebaseFirestore db;
     private String currentUserId;
 
+
+    public void backToMain(View view) {
+
+        super.onBackPressed();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
