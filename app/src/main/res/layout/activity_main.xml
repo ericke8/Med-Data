@@ -112,6 +112,12 @@
                     tools:layout_editor_absoluteX="20dp"
                     tools:layout_editor_absoluteY="60dp">
 
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="10dp"
+                        android:background="@drawable/gradient_shadow" />
+
                     <Button
                         android:id="@+id/editButton"
                         android:layout_width="match_parent"
