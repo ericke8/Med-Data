@@ -43,10 +43,6 @@ public class MainActivity extends AppCompatActivity {
     private List<String> badMeds;
     private String currentUserID;
 
-    private SwipeRefreshLayout refreshLayout;
-    private TextView text1;
-    private TextView text2;
-    private ArrayAdapter adapter;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -94,9 +90,6 @@ public class MainActivity extends AppCompatActivity {
         TextView textView = findViewById(R.id.alertText);
         textView.setText("No recalls to report");
 
-        refreshLayout = findViewById(R.id.swipe_refresh_layout);
-        text1 = findViewById(R.id.DrugRecall);
-        text2 = findViewById(R.id.news);
 
         AsyncTask.execute(new Runnable() {
             @Override
@@ -134,13 +127,6 @@ public class MainActivity extends AppCompatActivity {
 
                 TextView foodInfo = findViewById(R.id.news);
                 foodInfo.setText(getFoodInfo());
-            }
-        });
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                getFoodInfo();
-                refreshLayout.setRefreshing(false);
             }
         });
     }
