@@ -7,24 +7,6 @@
     android:layout_height="match_parent"
     android:background="#F3F3FC"
     tools:context=".data.MainActivity">
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".data.MyMeds"
-        tools:showIn="@layout/activity_my_meds"
-        android:orientation="vertical"
-        >
-
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/swipe_refresh_layout"
-        >
-
 
     <LinearLayout
         android:id="@+id/topDiv"
@@ -124,7 +106,7 @@
 
         </LinearLayout>
 
-        <LinearLayout
+
 
             android:id="@+id/bottomDiv"
             android:layout_width="match_parent"
@@ -151,16 +133,10 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-        </LinearLayout>
 
 
     </LinearLayout>
 
-
-
-    </android.support.v4.widget.SwipeRefreshLayout>
-
-    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
 
