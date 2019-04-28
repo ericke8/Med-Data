@@ -40,9 +40,8 @@ public class MyMeds extends AppCompatActivity implements AdapterView.OnItemClick
 
     FirebaseFirestore db;
 
-    private SwipeRefreshLayout refreshLayout;
+    //private SwipeRefreshLayout refreshLayout;
     private ListView listView;
-    private ArrayAdapter adapter;
 
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
@@ -123,43 +122,43 @@ public class MyMeds extends AppCompatActivity implements AdapterView.OnItemClick
         //Log.d("MyMeds", "after loop meds data" + meds.toString());
         System.out.println("FINISHED: " + meds.toString());
         //setContentView(R.layout.content_my_meds);
-        refreshLayout = findViewById(R.id.swipe_refresh_layout);
+        //refreshLayout = findViewById(R.id.swipe_refresh_layout);
         listView = findViewById(R.id.listView1);
 
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                meds = new ArrayList<>();
-                DocumentReference docRef = db.collection("users").document(currentUserId);
-                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                for(String s : document.getData().keySet()){
-                                    meds.add(s);
-                                    System.out.println("ADDING " + s);
-                                }
-                                //Log.d("MyMeds", "DocumentSnapshot data: " + document.getData());
-                                //Log.d("MyMeds", "meds list data" + meds.toString());
-                                ListView listView = (ListView) findViewById(R.id.listView1);
-                                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MyMeds.this, android.R.layout.simple_list_item_1, meds);
-                                listView.setAdapter(arrayAdapter);
-                                listView.setOnItemClickListener(MyMeds.this);
-                            } else {
-                                //Log.d("MyMeds", "No such document");
-                                System.out.println("NO SUCH DOC");
-                            }
-                        } else {
-                            //Log.d("MyMeds", "get failed with ", task.getException());
-                        }
-                        System.out.println("ALMOST FINISHED " + meds.toString());
-                    }
-                });
-                refreshLayout.setRefreshing(false);
-            }
-        });
+//        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                meds = new ArrayList<>();
+//                DocumentReference docRef = db.collection("users").document(currentUserId);
+//                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            DocumentSnapshot document = task.getResult();
+//                            if (document.exists()) {
+//                                for(String s : document.getData().keySet()){
+//                                    meds.add(s);
+//                                    System.out.println("ADDING " + s);
+//                                }
+//                                //Log.d("MyMeds", "DocumentSnapshot data: " + document.getData());
+//                                //Log.d("MyMeds", "meds list data" + meds.toString());
+//                                ListView listView = (ListView) findViewById(R.id.listView1);
+//                                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MyMeds.this, android.R.layout.simple_list_item_1, meds);
+//                                listView.setAdapter(arrayAdapter);
+//                                listView.setOnItemClickListener(MyMeds.this);
+//                            } else {
+//                                //Log.d("MyMeds", "No such document");
+//                                System.out.println("NO SUCH DOC");
+//                            }
+//                        } else {
+//                            //Log.d("MyMeds", "get failed with ", task.getException());
+//                        }
+//                        System.out.println("ALMOST FINISHED " + meds.toString());
+//                    }
+//                });
+//                refreshLayout.setRefreshing(false);
+//            }
+//        });
 
 
 

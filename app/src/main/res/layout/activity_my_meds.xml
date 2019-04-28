@@ -29,11 +29,11 @@
         android:orientation="vertical"
         >
 
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/swipe_refresh_layout"
-            >
+        <!--<android.support.v4.widget.SwipeRefreshLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:id="@+id/swipe_refresh_layout"-->
+            <!--&gt;-->
 
             <ListView
                 android:id="@+id/listView1"
@@ -43,7 +43,7 @@
                 android:layout_alignParentTop="true"
                 app:layout_constraintTop_toTopOf="parent"></ListView>
 
-        </android.support.v4.widget.SwipeRefreshLayout>
+        <!--</android.support.v4.widget.SwipeRefreshLayout>-->
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
