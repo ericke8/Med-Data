@@ -7,6 +7,24 @@
     android:background="@drawable/background_med"
     tools:context=".data.AddMeds">
 
+
+
+    <ImageView
+        android:id="@+id/closeButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:onClick="backToMain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/thin_x" />
+
+
+
+
     <Button
         android:id="@+id/addMedsButton"
         android:layout_width="140dp"
@@ -20,7 +38,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+
+        />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputLayout"
@@ -38,9 +58,9 @@
             android:hint="Medicine Name"
             android:singleLine="true"
             android:textColor="#FFFFFF"
-            android:textSize="40dp"
             android:textColorHighlight="@color/deep_purple_500"
             android:textColorHint="#EBE7E7"
-            android:textColorLink="#FFFFFF" />
+            android:textColorLink="#FFFFFF"
+            android:textSize="40dp" />
     </android.support.design.widget.TextInputLayout>
 </android.support.constraint.ConstraintLayout>

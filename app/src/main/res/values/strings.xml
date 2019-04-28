@@ -109,10 +109,52 @@
     <string name="title_activity_my_meds">My Meds</string>
 
 
+    <string name="add_med_message">Addition successful!</string>
+
     <string name="alerts">Alerts</string>
     <string name="editList"> Edit Your Meds List </string>
     <string name="foodRecallTitle">Current Food Recalls </string>
     <string name="ifDrugRecall"> <u><i>Drug Recall? Next Steps to take</i></u> </string>
+    <string name="drugRecallInfo">
+
+
+
+
+
+
+
+    </string>
+
+
+
+    <string-array name="desserts">
+        <item>Drug recalls occur when a medicine is removed from the market because it may be
+        potentially harmful to our bodies. Oftentimes, drug recalls are voluntarily
+        initiated by the manufacturers of the drug. In other cases, the Food and Drug
+        Administration (FDA) is the instigator behind the recall.
+        </item>
+        <item>
+        If the recalled medicine is a prescription drug, it may be more dangerous for you
+        to stop taking it. Contact your doctor or pharmacist as soon as possible to
+        determine the best course of action.
+        </item>
+        <item>
+            On the other hand, if the drug in question is not medically necessary, please be sure
+        to dispose of it properly so it will not endanger others. Examine the packaging
+        for disposal protocol, or ask a professional for help. It is recommended to mix the
+        medicine with an off-putting substance, such as cat litter or coffee grounds, before
+        placing it in the trash. It is generally not recommended to flush medicine down the toilet.
+        </item>
+
+
+
+    </string-array>
+
+
+
+
+
+
 
 
     <string name="news">News</string>
