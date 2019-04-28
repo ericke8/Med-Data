@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#0d47a1</color>
-    <color name="colorPrimaryDark">#002171</color>
+    <color name="colorPrimary">#F8F8F8</color>
+    <color name="colorPrimaryDark">#CACACA</color>
     <color name="colorAccent">#000000</color>
 <!--D81B60 -->
+
+    <color name="colorButtonPrimary">#0d47a1</color>
+    <color name="colorButtonPrimaryDark">#002171</color>
+
+
     <color name="purple_500">#1E89DD</color>
     <color name="deep_purple_500">#00BCD4</color>
     <color name="indigo_500">#8CD7FA</color>
