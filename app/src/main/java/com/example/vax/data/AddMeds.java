@@ -1,11 +1,13 @@
 package com.example.vax.data;
 
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.vax.R;
 import com.google.firebase.firestore.DocumentReference;
@@ -19,6 +21,7 @@ import java.util.HashMap;
 public class AddMeds extends AppCompatActivity {
     FirebaseFirestore db;
     private String currentUserId;
+
 
 
     public void backToMain(View view) {
@@ -49,8 +52,25 @@ public class AddMeds extends AppCompatActivity {
                 db.collection("users").document(currentUserId)
                         .set(temp, SetOptions.merge());
                 System.out.println("added to db");
+                MyMeds.arrayAdapter.add(addMedText.getText().toString());
+                //NavUtils.navigateUpFromSameTask(AddMeds.this);
+                showMedMessage();
+
                 finish();
             }
         });
     }
+
+    public void showMedMessage() {
+        displayToast(getString(R.string.add_med_message));
+    }
+
+
+    public void displayToast(String message) {
+        Toast.makeText(getApplicationContext(), message,
+                Toast.LENGTH_SHORT).show();
+    }
+
 }
+
+

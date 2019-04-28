@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.alertText);
-        textView.setText("recall alert placeholder");
+        textView.setText("No recalls to report");
 
         refreshLayout = findViewById(R.id.swipe_refresh_layout);
         text1 = findViewById(R.id.DrugRecall);

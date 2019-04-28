@@ -4,6 +4,11 @@
     <color name="colorPrimaryDark">#002171</color>
     <color name="colorAccent">#000000</color>
 <!--D81B60 -->
+
+    <color name="colorButtonPrimary">#0d47a1</color>
+    <color name="colorButtonPrimaryDark">#002171</color>
+
+
     <color name="purple_500">#1E89DD</color>
     <color name="deep_purple_500">#00BCD4</color>
     <color name="indigo_500">#8CD7FA</color>

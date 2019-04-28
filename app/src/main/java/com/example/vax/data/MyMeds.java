@@ -17,9 +17,12 @@ import android.widget.ListView;
 import com.example.vax.R;
 import com.example.vax.ui.login.LoginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -32,6 +35,8 @@ public class MyMeds extends AppCompatActivity implements AdapterView.OnItemClick
     private String currentUserId;
 
     private ArrayList<String> meds;
+
+    public static ArrayAdapter<String> arrayAdapter;
 
     FirebaseFirestore db;
 
@@ -68,9 +73,42 @@ public class MyMeds extends AppCompatActivity implements AdapterView.OnItemClick
                         //Log.d("MyMeds", "DocumentSnapshot data: " + document.getData());
                         //Log.d("MyMeds", "meds list data" + meds.toString());
                         ListView listView = (ListView) findViewById(R.id.listView1);
-                        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MyMeds.this, android.R.layout.simple_list_item_1, meds);
+                        arrayAdapter = new ArrayAdapter<String>(MyMeds.this, android.R.layout.simple_list_item_1, meds);
                         listView.setAdapter(arrayAdapter);
                         listView.setOnItemClickListener(MyMeds.this);
+                        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+                            @Override
+                            public boolean onItemLongClick(AdapterView<?> parent, View view,
+                                                           int position, long arg3) {
+
+                                DocumentReference docRef = db.collection("users").document(currentUserId);
+
+                                // Remove the 'capital' field from the document
+                                Map<String,Object> updates = new HashMap<>();
+                                updates.put(meds.get(position), FieldValue.delete());
+
+                                docRef.update(updates).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        System.out.println("successful delete");
+                                        //Log.d("MyMeds", "DocumentSnapshot successfully deleted!");
+                                    }
+                                })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                //Log.w("MyMeds", "Error deleting document", e);
+                                            }
+                                        });
+
+                                arrayAdapter.remove(meds.get(position));
+                                arrayAdapter.notifyDataSetChanged();
+
+                                return false;
+                            }
+
+                        });
                     } else {
                         //Log.d("MyMeds", "No such document");
                         System.out.println("NO SUCH DOC");
@@ -154,6 +192,7 @@ public class MyMeds extends AppCompatActivity implements AdapterView.OnItemClick
         intent.putExtra("name", meds.get(position));
         startActivity(intent);
     }
+
 
 }
 
