@@ -31,47 +31,54 @@ public class MedDetail extends AppCompatActivity {
         String[] myKeys = getResources().getStringArray(R.array.sections);
 
         TextView myTextView = (TextView) findViewById(R.id.my_textview);
-        myTextView.setText(myKeys[position]);
+        try {
+            myTextView.setText(intent.getStringExtra("name"));
+        } catch (Exception e) {
 
-        webView = findViewById(R.id.webview);
-
-        webView.getSettings().setJavaScriptEnabled(true); // enable javascript
-
-        final Activity activity = this;
-
-        progDialog = ProgressDialog.show(activity, "Loading","Please wait...", true);
-        progDialog.setCancelable(false);
-
-        webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setLoadWithOverviewMode(true);
-        webView.getSettings().setUseWideViewPort(true);
-
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                progDialog.show();
-                view.loadUrl(url);
-
-                return true;
-            }
-            @Override
-            public void onPageFinished(WebView view, final String url) {
-                progDialog.dismiss();
-            }
-        });
-
-        // Get name of medicine to get Mayo Clinic query
-        String medName = myKeys[position].trim();
-        String queryMedName = "";
-        String[] medNameArr = medName.split(" ");
-        for (String medNamePart : medNameArr) {
-            queryMedName += medNamePart + "%20";
         }
-        // Get rid of last space
-        queryMedName = queryMedName.substring(0, queryMedName.length()-3);
+            webView = findViewById(R.id.webview);
 
-        webView.loadUrl("https://www.google.com/search?q=" + queryMedName + "&btnI=I%27m+Feeling+Lucky");
-        //setContentView(R.layout.activity_med_detail);
+            webView.getSettings().setJavaScriptEnabled(true); // enable javascript
+
+            final Activity activity = this;
+
+            progDialog = ProgressDialog.show(activity, "Loading", "Please wait...", true);
+            progDialog.setCancelable(false);
+
+            webView.getSettings().setJavaScriptEnabled(true);
+            webView.getSettings().setLoadWithOverviewMode(true);
+            webView.getSettings().setUseWideViewPort(true);
+
+            webView.setWebViewClient(new WebViewClient() {
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                    progDialog.show();
+                    view.loadUrl(url);
+
+                    return true;
+                }
+
+                @Override
+                public void onPageFinished(WebView view, final String url) {
+                    progDialog.dismiss();
+                }
+            });
+            try {
+                // Get name of medicine to get Mayo Clinic query
+                String medName = intent.getStringExtra("name").trim();
+                String queryMedName = "";
+                String[] medNameArr = medName.split(" ");
+                for (String medNamePart : medNameArr) {
+                    queryMedName += medNamePart + "%20";
+                }
+                // Get rid of last space
+                queryMedName = queryMedName.substring(0, queryMedName.length() - 3);
+
+                webView.loadUrl("https://www.google.com/search?q=" + queryMedName + "&btnI=I%27m+Feeling+Lucky");
+                //setContentView(R.layout.activity_med_detail);
+            } catch (Exception e) {
+                webView.loadUrl("https://www.google.com/404");
+        }
 
     }
 

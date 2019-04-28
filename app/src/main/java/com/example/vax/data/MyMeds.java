@@ -96,12 +96,18 @@ public class MyMeds extends AppCompatActivity implements AdapterView.OnItemClick
 
     public void onItemClick(AdapterView<?> l, View v, int position, long id) {
         Log.i("HelloListView", "You clicked Item: " + id + " at position:" + position);
+        System.out.println("HELLLLOOOO LOOK AT MEEEE: " + position + " " + id);
+        System.out.println(l.toString());
+        System.out.println(v.toString());
+        System.out.println(meds.toString());
+
         // Then you start a new Activity via Intent
         Intent intent = new Intent();
         intent.setClass(this, MedDetail.class);
         intent.putExtra("position", position);
         // Or / And
         intent.putExtra("id", id);
+        intent.putExtra("name", meds.get(position));
         startActivity(intent);
     }
 
