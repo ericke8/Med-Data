@@ -13,7 +13,7 @@
         android:id="@+id/topDiv"
         android:layout_width="match_parent"
         android:layout_height="488dp"
-        android:background="#E6F0F0"
+        android:background="#E9ECEC"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="10dp">
@@ -21,7 +21,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:id="@+id/innerDiv"
+            android:layout_height="158dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
@@ -51,6 +52,18 @@
                 android:textSize="16dp"
                 app:fontFamily="@font/quicksand" />
 
+            <TextView
+                android:id="@+id/DrugRecall"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_alignParentBottom="true"
+                android:text="@string/ifDrugRecall"
+                android:onClick="infoRecallSwitch"
+                android:textColor="#EEEAEA"
+                android:textAlignment="center"
+                />
+
 
         </LinearLayout>
 
@@ -75,12 +88,9 @@
 
                 android:layout_height="wrap_content"
                 android:text="@string/foodRecallTitle"
-                android:textSize="20dp"
                 android:textAlignment="center"
+                android:textSize="20dp"
                 app:fontFamily="@font/quicksand" />
-
-
-
 
 
             <TextView
@@ -88,22 +98,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:padding="10dp"
+                android:scrollbars="vertical"
                 android:text="@string/news"
                 android:textSize="16dp"
-                android:scrollbars="vertical"
 
                 app:fontFamily="@font/quicksand" />
 
 
-
-
-
-
         </LinearLayout>
-
-
-
-
 
 
     </LinearLayout>
