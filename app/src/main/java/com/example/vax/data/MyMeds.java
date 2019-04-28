@@ -57,11 +57,13 @@ public class MyMeds extends AppCompatActivity implements AdapterView.OnItemClick
                     if (document.exists()) {
                         for(String s : document.getData().keySet()){
                             meds.add(s);
+                            System.out.println("ADDING " + s);
                         }
                         //Log.d("MyMeds", "DocumentSnapshot data: " + document.getData());
                         //Log.d("MyMeds", "meds list data" + meds.toString());
                     } else {
                         Log.d("MyMeds", "No such document");
+                        System.out.println("NO SUCH DOC");
                     }
                 } else {
                     Log.d("MyMeds", "get failed with ", task.getException());
