@@ -52,6 +52,7 @@ public class AddMeds extends AppCompatActivity {
                 db.collection("users").document(currentUserId)
                         .set(temp, SetOptions.merge());
                 System.out.println("added to db");
+                MainActivity.createAgain = true;
                 MyMeds.arrayAdapter.add(addMedText.getText().toString());
                 //NavUtils.navigateUpFromSameTask(AddMeds.this);
                 showMedMessage();

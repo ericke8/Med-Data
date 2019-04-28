@@ -160,15 +160,15 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.LENGTH_LONG).show();
                             String userStr = mAuth.getCurrentUser().getUid();
 
-                            HashMap<String, String> testing = new HashMap<>();
+ /*                           HashMap<String, String> testing = new HashMap<>();
                             testing.put("testkey1", "testvalue1");
                             testing.put("testkey2", "testvalue2");
                             testing.put("testkey3", "testvalue3");
                             testing.put("testkey4", "testvalue4");
                             testing.put("testkey5", "testvalue5");
-                            testing.put("testkey6", "testvalue6");
+                            testing.put("testkey6", "testvalue6");*/
 
-                            db.collection("users").document(userStr).set(testing).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            db.collection("users").document(userStr).set(new HashMap<String, String>()).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Log.d("loginActivity","Success write to db");

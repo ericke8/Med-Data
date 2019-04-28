@@ -65,7 +65,6 @@ public class MyMeds extends AppCompatActivity implements AdapterView.OnItemClick
                     if (document.exists()) {
                         for(String s : document.getData().keySet()){
                             meds.add(s);
-                            System.out.println("ADDING " + s);
                         }
                         //Log.d("MyMeds", "DocumentSnapshot data: " + document.getData());
                         //Log.d("MyMeds", "meds list data" + meds.toString());
@@ -153,7 +152,6 @@ public class MyMeds extends AppCompatActivity implements AdapterView.OnItemClick
         intent.putExtra("name", meds.get(position));
         startActivity(intent);
     }
-
 
 }
 
