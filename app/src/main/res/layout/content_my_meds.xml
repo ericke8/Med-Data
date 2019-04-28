@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".data.MyMeds"
-    tools:showIn="@layout/activity_my_meds">
+    tools:showIn="@layout/activity_my_meds"
+    android:orientation="vertical"
+    >
+    
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/swipe_refresh_layout"
+        >
 
     <ListView
         android:id="@+id/listView1"
@@ -15,4 +24,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         app:layout_constraintTop_toTopOf="parent"></ListView>
-</android.support.constraint.ConstraintLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>
