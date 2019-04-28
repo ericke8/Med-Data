@@ -43,6 +43,7 @@ public class AddMeds extends AppCompatActivity {
                 db.collection("users").document(currentUserId)
                         .set(temp, SetOptions.merge());
                 System.out.println("added to db");
+                MainActivity.createAgain = true;
                 finish();
             }
         });

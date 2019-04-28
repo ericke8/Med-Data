@@ -2,6 +2,7 @@
 package com.example.vax.data;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
@@ -10,6 +11,9 @@ import android.support.annotation.NonNull;
 import android.text.method.ScrollingMovementMethod;
 import android.util.JsonReader;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.view.View;
 import com.example.vax.R;
@@ -18,6 +22,14 @@ import android.widget.TextView;
 
 
 import com.example.vax.ui.login.LoginActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.annotations.Nullable;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -31,12 +43,18 @@ import java.sql.Timestamp;
 import javax.net.ssl.HttpsURLConnection;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView mTextMessage;
+    private static TextView mTextMessage;
 
-    private List<String> myMeds;
-    private List<String> badMeds;
+    private static List<String> myMeds;
+    private static List<String> badMeds;
 
-    private String currentUserID;
+    private static String currentUserID;
+
+    static FirebaseFirestore db;
+
+    public static boolean createAgain = false;
+    private static boolean dbAsync = false;
+    private static boolean webAsync = false;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -60,41 +78,83 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
         TextView textVieww = (TextView) findViewById(R.id.news);
 
 
+        webAsync = false;
+        dbAsync = false;
+
         textVieww.setMovementMethod(new ScrollingMovementMethod());
         mTextMessage = findViewById(R.id.message);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
 
-
-
-
-
-        myMeds = new ArrayList<String>();
-        myMeds.add("Betamethasone NA Phosphate");
-        myMeds.add("THIS IS NOT A BAD MED");
         badMeds = new ArrayList<String>();
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        currentUserID = intent.getStringExtra(LoginActivity.EXTRA_MESSAGE);
+        try {
+            currentUserID = intent.getStringExtra(LoginActivity.EXTRA_MESSAGE);
+        } catch(Exception e) {
+            System.out.println("\n\n\n NOT LOGINGGGGGG");
+        }
 
+        try {
+            currentUserID = intent.getStringExtra(MyMeds.EXTRA_MESSAGE);
+        } catch (Exception e) {
+            System.out.println("\n\n\n NOT MEDDDDSSSSSSS");
+        }
+
+        System.out.println("THIS IS THE CURRENT USER ID " + currentUserID);
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.alertText);
-        textView.setText("recall alert placeholder");
+        //textView.setText("recall alert placeholder");
 
+
+
+
+
+
+        db = FirebaseFirestore.getInstance();
+
+        myMeds = new ArrayList<>();
+        DocumentReference docRef = db.collection("users").document(currentUserID);
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        for(String s : document.getData().keySet()){
+                            myMeds.add(s);
+                        }
+
+                        dbAsync = true;
+                        //Log.d("MyMeds", "DocumentSnapshot data: " + document.getData());
+                        //Log.d("MyMeds", "meds list data" + meds.toString())l
+                    } else {
+                        //Log.d("MyMeds", "No such document");
+                        System.out.println("NO SUCH DOC");
+                    }
+                } else {
+                    //Log.d("MyMeds", "get failed with ", task.getException());
+                }
+                System.out.println("ALMOST FINISHED " + myMeds.toString());
+                System.out.println("ANDDDD " + badMeds.toString());
+
+            }
+        });
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
                 // Create URL
                 URL drugURL = null;
                 try {
-                    drugURL = new URL("https://api.fda.gov/drug/enforcement.json?search=report_date:[19700101+TO+20191231]&limit=100");
+                    drugURL = new URL("https://api.fda.gov/drug/enforcement.json?search=report_date:[20040101+TO+20131231]&limit=20");
                 } catch (Exception e) {
 
                 }
@@ -110,8 +170,13 @@ public class MainActivity extends AppCompatActivity {
 
                         // Do something with the value
                         getDrugs(jsonReader);
+
+                        webAsync = true;
+
+                        System.out.println("BAD DRUG LIST: " + badMeds.toString());
                         TextView medAlerts = findViewById(R.id.alertText);
                         medAlerts.setMovementMethod(new ScrollingMovementMethod());
+                        System.out.println("COMPAREEEE: " + compareMedLists(myMeds, badMeds));
                         medAlerts.setText(compareMedLists(myMeds, badMeds));
 
                     } else {
@@ -119,14 +184,92 @@ public class MainActivity extends AppCompatActivity {
                         medAlerts.setText("Error Connecting to Database...");
                     }
                 } catch (Exception e) {
-
+                    TextView medAlerts = findViewById(R.id.alertText);
+                    medAlerts.setText("Error Connecting to Database...");
                 }
-
-                TextView foodInfo = findViewById(R.id.news);
-                foodInfo.setText(getFoodInfo());
             }
         });
+
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                final String foodInfoText = getFoodInfo();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        TextView foodInfo = findViewById(R.id.news);
+                        foodInfo.setText(foodInfoText);
+                    }
+                });
+
+            }
+        });
+
+
+        /*runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+
+                int count = 0;
+                while (!(webAsync && dbAsync)) {
+                    count++;
+                    if (count == 10) {
+                        count = 0;
+                    }
+                }
+                TextView medAlerts = findViewById(R.id.alertText);
+                medAlerts.setText(compareMedLists(myMeds, badMeds));
+
+            }
+        });*/
+
+
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                int count = 0;
+                while (!(webAsync && dbAsync)) {
+                    count++;
+                    if (count == 10) {
+                        count = 0;
+                    }
+                }
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        TextView medAlerts = findViewById(R.id.alertText);
+                        medAlerts.setText(compareMedLists(myMeds, badMeds));
+                    }
+                });
+
+            }
+        });
+
+        final DocumentReference docRef2 = db.collection("users").document(currentUserID);
+        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot snapshot,
+                                @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    //Log.w(TAG, "Listen failed.", e);
+                    System.out.println("BOOOO");
+                    return;
+                }
+
+                if (snapshot != null && snapshot.exists() && webAsync && dbAsync && createAgain) {
+                    //Log.d(TAG, "Current data: " + snapshot.getData());
+                    recreate();
+                    createAgain = false;
+                } else {
+                    //Log.d(TAG, "Current data: null");
+                    System.out.println(":(");
+                }
+            }
+        });
+
     }
+
 
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
@@ -151,7 +294,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void getDrugs(JsonReader jsonReader){
+    public static void getDrugs(JsonReader jsonReader){
         try {
             jsonReader.beginObject(); // Start processing the JSON object
             while (jsonReader.hasNext()) {
@@ -174,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public String getDrugName(JsonReader jsonReader) {
+    public static String getDrugName(JsonReader jsonReader) {
         try {
             String keyName = "product_description";
             String dateName = "recall_initiation_date";
@@ -199,7 +342,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public String compareMedLists(List<String> myMeds, List<String> badMeds) {
+    public static String compareMedLists(List<String> myMeds, List<String> badMeds) {
         String ans = "";
         for (int i = 0; i < badMeds.size(); i++) {
             for (int j = 0; j < myMeds.size(); j++) {
@@ -215,7 +358,7 @@ public class MainActivity extends AppCompatActivity {
         return ans;
     }
 
-    public String getFoodInfo() {
+    public static String getFoodInfo() {
         String result = " ";
         URL foodURL;
         try {
@@ -249,7 +392,7 @@ public class MainActivity extends AppCompatActivity {
                 } catch (Exception e) {
                 }
             } else {
-                return "Error Connecting to Database...";
+                return "Error Connecting to Database....";
             }
         } catch (Exception e) {
             return "Error Connecting to Database...";
@@ -258,7 +401,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public String getFoodName(JsonReader jsonReader) {
+    public static String getFoodName(JsonReader jsonReader) {
         try {
             String keyName = "product_description";
             String keyDate = "report_date";
@@ -286,7 +429,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public String[] getTimeRange(long range) {
+    public static String[] getTimeRange(long range) {
         String[] timeRange = new String[2];
         Date date = new Date();
         long timeNow = date.getTime();
