@@ -282,7 +282,7 @@ public class MainActivity extends AppCompatActivity {
             ans = tempDate + ": " + tempName;
             return ans;
         } catch (Exception e) {
-            return "HEROIN";
+            return "FOOD";
         }
     }
 
