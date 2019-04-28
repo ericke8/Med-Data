@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void infoRecallSwitch(View view) {
-        Intent intent = new Intent(this, MyMeds.class);
+        Intent intent = new Intent(this, InfoRecall.class);
         startActivity(intent);
     }
 
