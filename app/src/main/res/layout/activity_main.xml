@@ -31,7 +31,7 @@
                     android:id="@+id/innerDiv"
                     android:layout_width="match_parent"
 
-                    android:layout_height="145dp"
+                    android:layout_height="175dp"
                     android:background="@drawable/gradient"
                     android:orientation="vertical"
                     android:padding="20dp"
@@ -64,7 +64,7 @@
                 <LinearLayout
                     android:id="@+id/newsDiv"
                     android:layout_width="match_parent"
-                    android:layout_height="321dp"
+                    android:layout_height="291dp"
                     android:background="@color/white"
                     android:orientation="vertical"
                     android:padding="10dp"
@@ -78,9 +78,9 @@
                         android:id="@+id/foodRecallText"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
+                        android:elevation="8dp"
                         android:text="@string/foodRecallTitle"
                         android:textAlignment="center"
-                        android:elevation="8dp"
                         android:textSize="20dp"
                         app:fontFamily="@font/quicksand" />
 

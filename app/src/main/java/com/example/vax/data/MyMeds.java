@@ -72,6 +72,7 @@ public class MyMeds extends AppCompatActivity implements AdapterView.OnItemClick
                         arrayAdapter = new ArrayAdapter<String>(MyMeds.this, android.R.layout.simple_list_item_1, meds);
                         listView.setAdapter(arrayAdapter);
                         listView.setOnItemClickListener(MyMeds.this);
+
                         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
                             @Override
