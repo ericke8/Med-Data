@@ -34,6 +34,7 @@ public class MyMeds extends AppCompatActivity implements AdapterView.OnItemClick
 
     FirebaseFirestore db;
 
+    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +86,7 @@ public class MyMeds extends AppCompatActivity implements AdapterView.OnItemClick
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MyMeds.this, AddMeds.class);
+                intent.putExtra(EXTRA_MESSAGE, currentUserId);
                 startActivity(intent);
             }
         });
