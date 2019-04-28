@@ -47,7 +47,6 @@ public class MyMeds extends AppCompatActivity implements AdapterView.OnItemClick
         Intent intent = getIntent();
         currentUserId = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
         meds = new ArrayList<>();
-
         DocumentReference docRef = db.collection("users").document(currentUserId);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -61,20 +60,24 @@ public class MyMeds extends AppCompatActivity implements AdapterView.OnItemClick
                         }
                         //Log.d("MyMeds", "DocumentSnapshot data: " + document.getData());
                         //Log.d("MyMeds", "meds list data" + meds.toString());
+                        ListView listView = (ListView) findViewById(R.id.listView1);
+                        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(MyMeds.this, android.R.layout.simple_list_item_1, meds);
+                        listView.setAdapter(arrayAdapter);
+                        listView.setOnItemClickListener(MyMeds.this);
                     } else {
-                        Log.d("MyMeds", "No such document");
+                        //Log.d("MyMeds", "No such document");
                         System.out.println("NO SUCH DOC");
                     }
                 } else {
-                    Log.d("MyMeds", "get failed with ", task.getException());
+                    //Log.d("MyMeds", "get failed with ", task.getException());
                 }
+                System.out.println("ALMOST FINISHED " + meds.toString());
             }
         });
 
-        Log.d("MyMeds", "after loop meds data" + meds.toString());
-        ListView listView = (ListView) findViewById(R.id.listView1);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, meds);
-        listView.setAdapter(arrayAdapter);
+        //Log.d("MyMeds", "after loop meds data" + meds.toString());
+        System.out.println("FINISHED: " + meds.toString());
+
 
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -86,7 +89,7 @@ public class MyMeds extends AppCompatActivity implements AdapterView.OnItemClick
             }
         });
 
-        listView.setOnItemClickListener(this);
+
     }
 
     public void onItemClick(AdapterView<?> l, View v, int position, long id) {
