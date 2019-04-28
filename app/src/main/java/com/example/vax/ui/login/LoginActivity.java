@@ -91,25 +91,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-//        loginViewModel.getLoginResult().observe(this, new Observer<LoginResult>() {
-//            @Override
-//            public void onChanged(@Nullable LoginResult loginResult) {
-//                if (loginResult == null) {
-//                    return;
-//                }
-//                loadingProgressBar.setVisibility(View.GONE);
-//                if (loginResult.getError() != null) {
-//                    showLoginFailed(loginResult.getError());
-//                }
-//                if (loginResult.getSuccess() != null) {
-//                    updateUiWithUser(loginResult.getSuccess());
-//                }
-//                setResult(Activity.RESULT_OK);
-//
-//                //Complete and destroy login activity once successful
-//                finish();
-//            }
-//        });
 
         TextWatcher afterTextChangedListener = new TextWatcher() {
             @Override
@@ -145,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(LoginActivity.this, MyMeds.class));
+
                 final String welcome = getString(R.string.welcome) + usernameEditText.getText().toString();
 
                 mAuth.signInWithEmailAndPassword(usernameEditText.getText().toString(),
@@ -163,7 +144,7 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.LENGTH_LONG).show();                        }
                     }
                 });
-                //loadingProgressBar.setVisibility(View.VISIBLE);
+
             }
         });
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -202,9 +183,6 @@ public class LoginActivity extends AppCompatActivity {
                             updateUiWithUser(userStr);
                             finish();
 
-                            //startActivity(new Intent(LoginActivity.this, MyMeds.class));
-                            //loginViewModel.login(usernameEditText.getText().toString(),
-                            //        passwordEditText.getText().toString());
                         } else {
                             Toast.makeText(LoginActivity.this, task.getException().getMessage(),
                                     Toast.LENGTH_LONG).show();
@@ -225,20 +203,8 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
-//    private void updateUiWithUser(LoggedInUserView model) {
-//        String welcome = getString(R.string.welcome) + model.getDisplayName();
-//        // TODO : initiate successful logged in experience
-//        Intent intent = new Intent(this, MainActivity.class);
-//        EditText editText = (EditText) findViewById(R.id.username);
-//        String message = editText.getText().toString();
-//        intent.putExtra(EXTRA_MESSAGE, message);
-//        startActivity(intent);
-//        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
-//    }
+
 
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
-//    private void showLoginFailed(@StringRes Integer errorString) {
-//        Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
-//    }
 }
