@@ -1,5 +1,6 @@
 package com.example.vax.data;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -37,6 +38,12 @@ public class InfoRecall extends AppCompatActivity {
         vp.setAdapter(new MyPagesAdapter());
     }
 
+
+
+    public void backToMain(View view) {
+
+        super.onBackPressed();
+    }
 
     //Implement PagerAdapter Class to handle individual page creation
     class MyPagesAdapter extends PagerAdapter {

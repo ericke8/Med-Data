@@ -152,6 +152,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(myIntent);
     }
 
+
+
     public void getDrugs(JsonReader jsonReader){
         try {
             jsonReader.beginObject(); // Start processing the JSON object
