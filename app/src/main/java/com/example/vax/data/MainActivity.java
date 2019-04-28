@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
                 // Create URL
                 URL drugURL = null;
                 try {
-                    drugURL = new URL("https://api.fda.gov/drug/enforcement.json?search=report_date:[19700101+TO+20191231]&limit=100");
+                    drugURL = new URL("https://api.fda.gov/drug/enforcement.json?search=report_date:[20190401+TO+20190427]&limit=100");
                 } catch (Exception e) {
 
                 }
@@ -259,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (snapshot != null && snapshot.exists() && webAsync && dbAsync && createAgain) {
+                if (snapshot != null && snapshot.exists() && createAgain) {
                     //Log.d(TAG, "Current data: " + snapshot.getData());
                     recreate();
                     createAgain = false;
@@ -324,8 +324,10 @@ public class MainActivity extends AppCompatActivity {
         try {
             String keyName = "product_description";
             String dateName = "recall_initiation_date";
+            String firmName = "recalling_firm";
             String ans = null;
             String date = null;
+            String firm = null;
             jsonReader.beginObject();
             while (jsonReader.hasNext()) {
                 String name = jsonReader.nextName();
@@ -333,13 +335,15 @@ public class MainActivity extends AppCompatActivity {
                     ans = jsonReader.nextString();
                 } else if (name.equals(dateName)) {
                     date = jsonReader.nextString();
+                } else if (name.equals(firmName)) {
+                    firm = jsonReader.nextString();
                 }
                 else {
                     jsonReader.skipValue();
                 }
             }
             jsonReader.endObject();
-            return date + ": " + ans;
+            return date + ": " + ans + "company:::" + firm;
         } catch (Exception e) {
             return "HEROIN";
         }
@@ -353,6 +357,7 @@ public class MainActivity extends AppCompatActivity {
                     String date = badMeds.get(i).split(": ")[0];
                     date = date.substring(4, 6) + "/" + date.substring(6) + "/" + date.substring(0, 4);
                     ans += date + ": " + myMeds.get(j);
+                    ans += ", " + badMeds.get(i).split("company:::")[1];
                     ans += "\n";
                     ans += "\n";
                 }
