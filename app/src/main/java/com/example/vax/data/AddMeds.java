@@ -1,6 +1,7 @@
 package com.example.vax.data;
 
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,7 @@ import java.util.HashMap;
 public class AddMeds extends AppCompatActivity {
     FirebaseFirestore db;
     private String currentUserId;
+
 
 
     public void backToMain(View view) {
@@ -50,6 +52,8 @@ public class AddMeds extends AppCompatActivity {
                 db.collection("users").document(currentUserId)
                         .set(temp, SetOptions.merge());
                 System.out.println("added to db");
+                MyMeds.arrayAdapter.add(addMedText.getText().toString());
+                //NavUtils.navigateUpFromSameTask(AddMeds.this);
                 showMedMessage();
 
                 finish();
