@@ -106,19 +106,19 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_main2">Main2Activity</string>
-    <string name="title_activity_my_meds">MyMeds</string>
-
-
+    <string name="title_activity_my_meds">My Meds</string>
 
 
     <string name="alerts">Alerts</string>
     <string name="editList"> Edit Your Meds List </string>
     <string name="foodRecallTitle">Current Food Recalls </string>
-
+    <string name="ifDrugRecall"> <u><i>Drug Recall? Next Steps to take</i></u> </string>
 
 
     <string name="news">News</string>
+    <string name="submit">Submit</string>
 
 
     <string name="element_text">Element</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

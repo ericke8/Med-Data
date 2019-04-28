@@ -146,6 +146,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void infoRecallSwitch(View view) {
+        Intent intent = new Intent(this, MyMeds.class);
+        startActivity(intent);
+    }
+
     public void getDrugs(JsonReader jsonReader){
         try {
             jsonReader.beginObject(); // Start processing the JSON object
@@ -277,7 +282,7 @@ public class MainActivity extends AppCompatActivity {
             ans = tempDate + ": " + tempName;
             return ans;
         } catch (Exception e) {
-            return "HEROIN";
+            return "FOOD";
         }
     }
 
