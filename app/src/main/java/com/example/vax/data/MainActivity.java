@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MyMeds.class);
         //TextView text = (TextView) findViewById(R.id.textView2);
         //String message = text.getText().toString();
-        //intent.putExtra(EXTRA_MESSAGE, message);
+        intent.putExtra(EXTRA_MESSAGE, currentUserID);
         startActivity(intent);
     }
 
