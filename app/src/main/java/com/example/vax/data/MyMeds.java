@@ -100,6 +100,7 @@ public class MyMeds extends AppCompatActivity implements AdapterView.OnItemClick
 
                                 arrayAdapter.remove(meds.get(position));
                                 arrayAdapter.notifyDataSetChanged();
+                                MainActivity.createAgain = true;
 
                                 return false;
                             }
