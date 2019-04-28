@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.vax.R;
 import com.google.firebase.firestore.DocumentReference;
@@ -21,6 +22,12 @@ public class AddMeds extends AppCompatActivity {
     FirebaseFirestore db;
     private String currentUserId;
 
+
+
+    public void backToMain(View view) {
+
+        super.onBackPressed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +54,23 @@ public class AddMeds extends AppCompatActivity {
                 System.out.println("added to db");
                 MyMeds.arrayAdapter.add(addMedText.getText().toString());
                 //NavUtils.navigateUpFromSameTask(AddMeds.this);
+                showMedMessage();
+
                 finish();
             }
         });
     }
+
+    public void showMedMessage() {
+        displayToast(getString(R.string.add_med_message));
+    }
+
+
+    public void displayToast(String message) {
+        Toast.makeText(getApplicationContext(), message,
+                Toast.LENGTH_SHORT).show();
+    }
+
 }
+
+

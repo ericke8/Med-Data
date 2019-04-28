@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Capture the layout's TextView and set the string as its text
         TextView textView = findViewById(R.id.alertText);
-        textView.setText("recall alert placeholder");
+        textView.setText("No recalls to report");
 
         AsyncTask.execute(new Runnable() {
             @Override
