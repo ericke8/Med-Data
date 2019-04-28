@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
 import android.text.method.ScrollingMovementMethod;
@@ -83,7 +84,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+
+
         TextView textVieww = (TextView) findViewById(R.id.news);
+
+
 
 
         webAsync = false;

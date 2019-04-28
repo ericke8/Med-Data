@@ -45,7 +45,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"
-                        android:text="Medical Recall Alerts"
+                        android:layout_marginBottom="3dp"
+                        android:text="@string/recall_alert_title"
                         android:textColor="@color/white"
                         android:textSize="18dp" />
 
@@ -64,7 +65,7 @@
                 <LinearLayout
                     android:id="@+id/newsDiv"
                     android:layout_width="match_parent"
-                    android:layout_height="291dp"
+                    android:layout_height="318dp"
                     android:background="@color/white"
                     android:orientation="vertical"
                     android:padding="10dp"
@@ -78,18 +79,23 @@
                         android:id="@+id/foodRecallText"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
                         android:elevation="8dp"
                         android:text="@string/foodRecallTitle"
                         android:textAlignment="center"
-                        android:textSize="20dp"
+                        android:textSize="18dp"
                         app:fontFamily="@font/quicksand" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorPrimary" />
 
 
                     <TextView
                         android:id="@+id/news"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="5dp"
                         android:padding="10dp"
                         android:scrollbars="vertical"
                         android:text="@string/news"
@@ -123,14 +129,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
-                        android:layout_margin="20dp"
+                        android:layout_margin="10dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/button_edit_med"
-                        android:drawableRight="@android:drawable/ic_menu_edit"
+                        android:drawableRight="@drawable/icon_edit"
                         android:onClick="myMedsSwitch"
-                        android:paddingRight="15dp"
+                        android:paddingLeft="60dp"
+                        android:paddingRight="35dp"
                         android:text="@string/editList"
-                        android:textColor="@color/white"
+                        android:textColor="@color/colorPrimary"
                         app:layout_constraintTop_toTopOf="parent" />
 
 

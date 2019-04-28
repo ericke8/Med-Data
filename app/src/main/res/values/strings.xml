@@ -108,6 +108,8 @@
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_my_meds">My Meds</string>
 
+    <string name="recall_alert_title"><b>Medical Recall Alerts</b></string>
+
 
     <string name="add_med_message">Addition successful!</string>
 
