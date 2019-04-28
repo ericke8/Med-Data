@@ -7,136 +7,143 @@
     android:layout_height="match_parent"
     android:background="#F3F3FC"
     tools:context=".data.MainActivity">
-
     <LinearLayout
-        android:id="@+id/topDiv"
         android:layout_width="match_parent"
-        android:layout_height="388dp"
-        android:background="#E9ECEC"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".data.MyMeds"
+        tools:showIn="@layout/activity_my_meds"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="10dp">
+        >
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:id="@+id/innerDiv"
-            android:layout_height="158dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/gradient"
-            android:orientation="vertical"
-            android:padding="10dp"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="20dp"
-            tools:layout_editor_absoluteY="60dp">
-
-
-            <TextView
-                android:id="@+id/AlertTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:text="Medical Recall Alerts"
-                android:textColor="@color/white"
-                android:textSize="18dp" />
-
-            <TextView
-                android:id="@+id/alertText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/alerts"
-                android:textColor="@color/white"
-                android:textSize="16dp"
-                app:fontFamily="@font/quicksand" />
-
-            <TextView
-                android:id="@+id/DrugRecall"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_alignParentBottom="true"
-                android:text="@string/ifDrugRecall"
-                android:onClick="infoRecallSwitch"
-                android:textColor="#EEEAEA"
-                android:textAlignment="center"
-                />
-
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/newsDiv"
-            android:layout_width="match_parent"
-            android:layout_height="186dp"
-            android:layout_margin="20dp"
-            android:background="@color/white"
-            android:orientation="vertical"
-            android:padding="10dp"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="20dp"
-            tools:layout_editor_absoluteY="60dp">
-
-
-            <TextView
-                android:id="@+id/foodRecallText"
-                android:layout_width="fill_parent"
-
-
-                android:layout_height="wrap_content"
-                android:text="@string/foodRecallTitle"
-                android:textAlignment="center"
-                android:textSize="20dp"
-                app:fontFamily="@font/quicksand" />
-
-
-            <TextView
-                android:id="@+id/news"
+            <LinearLayout
+                android:id="@+id/topDiv"
                 android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:padding="10dp"
-                android:scrollbars="vertical"
-                android:text="@string/news"
-                android:textSize="16dp"
-
-                app:fontFamily="@font/quicksand" />
+                android:layout_height="wrap_content"
+                android:background="#E9ECEC"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="10dp">
 
 
-        </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/innerDiv"
+                    android:layout_width="match_parent"
+                    android:layout_height="145dp"
+                    android:background="@drawable/gradient"
+                    android:orientation="vertical"
+                    android:padding="20dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="20dp"
+                    tools:layout_editor_absoluteY="60dp">
 
 
+                    <TextView
+                        android:id="@+id/AlertTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:text="Medical Recall Alerts"
+                        android:textColor="@color/white"
+                        android:textSize="18dp" />
 
-            android:id="@+id/bottomDiv"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="#D6E0E0"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/topDiv">
+                    <TextView
+                        android:id="@+id/alertText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/alerts"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        app:fontFamily="@font/quicksand" />
 
-            <Button
-                android:id="@+id/editButton"
-                android:layout_width="230dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_margin="20dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/button_edit_med"
-                android:drawableRight="@android:drawable/ic_menu_edit"
-                android:onClick="myMedsSwitch"
-                android:paddingRight="15dp"
-                android:text="@string/editList"
+                </LinearLayout>
 
 
-                android:textColor="@color/white"
-                app:layout_constraintTop_toTopOf="parent" />
+                <LinearLayout
+                    android:id="@+id/newsDiv"
+                    android:layout_width="match_parent"
+                    android:layout_height="321dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="20dp"
+                    tools:layout_editor_absoluteY="60dp">
+
+
+                    <TextView
+                        android:id="@+id/foodRecallText"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/foodRecallTitle"
+                        android:textAlignment="center"
+                        android:textSize="20dp"
+                        app:fontFamily="@font/quicksand" />
+
+
+                    <TextView
+                        android:id="@+id/news"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:padding="10dp"
+                        android:scrollbars="vertical"
+                        android:text="@string/news"
+                        android:textSize="16dp"
+
+                        app:fontFamily="@font/quicksand" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/secondDiv"
+                    android:layout_width="match_parent"
+                    android:layout_height="345dp"
+                    android:layout_weight="1"
+                    android:background="@color/cardview_dark_background"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="20dp"
+                    tools:layout_editor_absoluteY="60dp">
+
+                    <Button
+                        android:id="@+id/editButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="20dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/button_edit_med"
+                        android:drawableRight="@android:drawable/ic_menu_edit"
+                        android:onClick="myMedsSwitch"
+                        android:paddingRight="15dp"
+                        android:text="@string/editList"
+                        android:textColor="@color/white"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/DrugRecall"
+                        android:layout_width="fill_parent"
+                        android:layout_height="58dp"
+
+                        android:layout_gravity="bottom"
+                        android:onClick="infoRecallSwitch"
+                        android:text="@string/ifDrugRecall"
+                        android:textAlignment="center"
+                        android:textColor="#EEEAEA" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
 
 
 
     </LinearLayout>
-
 
 </android.support.constraint.ConstraintLayout>
 
