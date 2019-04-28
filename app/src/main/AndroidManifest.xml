@@ -20,7 +20,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".data.InfoRecall"></activity>
+
+        <activity
+            android:name=".data.InfoRecall"
+            android:label="@string/title_activity_my_meds"
+            android:parentActivityName=".data.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -43,6 +48,7 @@
             android:label="@string/title_activity_my_meds"
             android:parentActivityName=".data.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".data.MainActivity"
             android:label="@string/title_activity_main"

@@ -147,8 +147,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void infoRecallSwitch(View view) {
-        Intent intent = new Intent(this, InfoRecall.class);
-        startActivity(intent);
+
+        Intent myIntent = new Intent(this, InfoRecall.class);
+        startActivity(myIntent);
     }
 
     public void getDrugs(JsonReader jsonReader){
