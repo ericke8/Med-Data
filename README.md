@@ -9,3 +9,6 @@ Our app was coded using Android Studio. A large part of our app was also impleme
 The data displayed in Med-Data is taken through openFDA, which is the Food and Drug Administration’s API. Different queries are made to parse food and drug recall data using JSON. 
 
 This project was made by Eric Ke, Nathan Zhao, Anne Xu, and Christina Leung in under 36 hours as a part of Citrus Hacks 2019.
+
+Won the award for Best Medical Hack, as the project that best innovates within med-tech or promotes a healthy lifestyle.
+Won the award for Best Entrepreneurial Hack, as the best project best able to launch a technology start-up business or service.
